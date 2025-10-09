@@ -1,0 +1,397 @@
+:root{
+    --font: system-ui, -apple-system, BlinkMacSystemFont, 
+            'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 
+            'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    /*background-color: rgb(26, 53, 0);*/
+
+}
+
+header{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    min-height: 15vh;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    padding: 2%;
+    padding-left: 5%;
+    padding-bottom: 1%;
+    gap: 1rem;
+    /*background-color: rgb(26, 53, 0);*/
+    background-image: linear-gradient(45deg, #1a3500, olive);
+}
+
+header nav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    min-height: 5vh;
+}
+
+header nav ul{
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-around;
+    list-style: none;
+}
+
+header nav ul li{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font);
+    font-size: 1.0em;
+    font-weight: 600;
+    color: #999999;
+    cursor: pointer;
+}
+
+header nav ul li:hover{
+
+    color: #fff;
+    text-shadow: 0 0 2px #999999;
+    border-bottom: 1px solid #fff;
+    transition: 1s ease-out;
+    transform: scale(1.1);
+}
+
+@keyframes hoverMenu {
+    0%{
+        transform: scale(1.0);
+    } 50% {
+        transform: scale(1.1);
+    } 100% {
+        transform: scale(1.0);
+    }
+}
+
+h1{
+    font-family: var(--font);
+    font-size: 2.3em;
+    font-weight: 700;
+    color: #fff;
+}
+
+h2{
+    font-family: var(--font);
+    font-size: 1.4em;
+    font-weight: 600;
+    color: black;
+}
+
+h3{
+    font-family: var(--font);
+    font-size: 1.1em;
+    font-weight: 600;
+    color: black;
+}
+
+h4{
+    font-family: var(--font);
+    font-size: 1em;
+    font-weight: 600;
+    color: black;
+}
+
+p{
+    font-family: var(--font);
+    font-size: 0.9em;
+    font-weight: 500;
+    color: #000000;
+}
+
+button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    width: 10rem;
+    border: none;
+    border-radius: 10px;
+    background-color: olive;
+    box-shadow: 0 0 10px 3px #333;
+    font-family: var(--font);
+    font-size: 1.2em;
+    font-weight: 400;
+    color: #fff;
+    text-shadow: 0 0 5px #333;
+    text-align: center;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: #fff;
+    border: 1px solid #333;
+    color: olive;
+    font-weight: 700;
+    text-shadow: 0 0 2px #999999;
+    animation: hoverMenu 3s ease-out infinite;
+}
+
+ul{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: space-around;
+    list-style: none;
+}
+
+input{
+    display: flex;
+    font-family: var(--font);
+    font-size: 1.2em;
+    font-weight: 400;
+    border-radius: 10px;
+    border: 1px solid #333;
+    width: 100%;
+    padding-left: 5%;
+    padding-right: 2%;
+    box-shadow: 0 0 5px 1px #333;
+}
+
+select{
+    font-family: var(--font);
+    font-size: 1.1em;
+    font-weight: 400;
+    border-radius: 10px;
+    border: 1px solid #333;
+    width: 100%;
+    padding-left: 5%;
+    box-shadow: 0 0 5px 1px #333;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    min-height: 80vh;
+    flex: 1;
+   
+    align-items: center;
+    justify-content: center;
+
+    padding: 2% 2% 2% 2%;
+
+    background-image: url('/images/pexels-tomfisk-18979035.jpg');
+
+    /*background-image: url('/images/pexels-kovyrina-1600139.jpg');*/
+    background-size: cover;       /* cobre todo o container */
+    background-position: top center;  /* centraliza a imagem */
+    background-repeat: no-repeat;
+    
+    overflow-x: hidden;
+}
+
+main section{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 70vh;
+    align-items: flex-start;
+    justify-content: space-around;
+
+    background: rgba(255, 255, 255, 0.3); /* transparente */
+    backdrop-filter: blur(10px);           /* efeito vidro */
+    -webkit-backdrop-filter: blur(10px);   /* para Safari */
+    transition: all 0.3s ease;
+    border-radius: 15px;
+
+    
+}
+
+main section .containerCabecalhoPlantio {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 20%;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#containerCabecalhoColheita{
+    justify-content: flex-start;
+    padding-top: 2%;
+}
+
+main section .containerCabecalhoPlantio h2{
+    width: 50%;
+    padding-left: 5%;
+    font-size: 2em;
+}
+
+main section .containerCabecalhoPlantio .btnAddPlantio{
+    display: flex;
+    flex-direction: row;
+    width: 10rem;
+}
+
+
+
+main section ul{
+    min-height: 100%;
+    padding: 2%;
+}
+
+main section ul li{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    padding: 2%;
+    border-bottom: 1px solid #333;
+}
+
+main section ul li:hover{
+    background-color: olive;
+    cursor: pointer;
+    box-shadow: 0 0 10px 5px #333;
+    text-shadow: 0 0 15px #fff;
+    border-radius: 5px;
+}
+
+main section ul li:hover > h3, main section ul li:hover > h4 {
+    color: #fff;
+    transform: scale(1.1);
+    font-weight: bold;
+}
+
+modal{
+    flex-direction: column;
+    top: 0;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(110, 110, 110, 0.7);
+    z-index: 1;
+}
+
+modal .btnFecharModal{
+    position: absolute;
+    display: flex;
+    top: 11%;
+    right: 13%;
+    font-size: 1.4em;
+    font-weight: bold;
+    font-family: var(--font);
+    color: #fff;
+    border: none;
+    width: 50px;
+    height: 50px;
+    background-color: #880101;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+modal .btnFecharModal:hover{
+    background-color: #e90303;
+    text-shadow: 0 0 5px #333;
+}
+
+modal .containerPlantio{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 70%;
+    align-items: center;
+    justify-content: space-around;
+    background-color: beige;
+    box-shadow: 0 0 15px 10px #333;
+    overflow: hidden;
+}
+
+modal .containerPlantio .menuContainerPlantio{
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    height: 25%;
+    align-items: center;
+    justify-content: space-evenly;
+    border-top: 1px solid #333;
+}
+
+modal .containerPlantio h2{
+    width: 100%;
+    padding: 2%;
+    padding-left: 5%;
+}
+
+modal .containerPlantio ul{
+    flex-direction: row;
+    height: 60%;
+    width: 70%;
+    padding-left: 5%;
+    align-items: center;
+    justify-content: center;
+}
+
+modal .containerPlantio ul li{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    padding: 2%;
+    overflow-x: hidden;
+}
+
+modal .containerPlantio ul li form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 15vh;
+    width: 100%;
+    background-color: rgb(160, 160, 160);
+}
+
+footer p{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: justify;
+    text-shadow: 0 0 15px #fff;
+}
