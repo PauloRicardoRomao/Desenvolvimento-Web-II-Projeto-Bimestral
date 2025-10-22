@@ -1,3 +1,29 @@
+function abrirContainerPlantios() {
+    document.getElementById("containerPlantios").style.display = "block";
+    document.getElementById("containerColheitas").style.display = "none";
+}
+
+function abrirContainerColheitas() {
+    document.getElementById("containerPlantios").style.display = "none";
+    document.getElementById("containerColheitas").style.display = "block";
+}
+
+function abrirModal(id) {
+    const modal = document.getElementById(id);
+    if (modal) {
+        modal.style.display = modal.style.display === "none" ? "block" : "none";
+    }
+}
+
+function abrirModalCad(id) {
+    abrirModal(id);
+}
+
+function gravarColheita(idPlantio) {
+    if (confirm("Confirmar colheita deste plantio?")) {
+        window.location.href = `/colheita/add/${idPlantio}`;
+    }
+}
 
 
 function abrirContainerPlantios() {
@@ -56,12 +82,11 @@ function abrirModalCad(idModal) {
 };
 
 function gravarColheita(idPlantio) {
-    const plantio = idPlantio;
     const hoje = new Date();
     const data = hoje.toISOString().split('T')[0];
 
     const body = new URLSearchParams();
-    body.append('plantio', plantio);
+    body.append('plantio', idPlantio);
     body.append('data', data);
 
     fetch('/colheita/add', {
@@ -70,12 +95,15 @@ function gravarColheita(idPlantio) {
         body: body
     })
     .then(res => {
-        if(res.ok){
-            alert('Colheita gravada e plantio inativado!');
-            location.reload();
-        } else {
-            alert('Erro ao gravar colheita.');
-        }
+        if (!res.ok) throw new Error('Erro na requisição'); // trata 404 ou 500
+        return res.json();
     })
-    .catch(err => console.error(err));
+    .then(data => {
+        alert(data.message);
+        location.reload();
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Erro inesperado ao gravar colheita.");
+    });
 }

@@ -1,18 +1,22 @@
 const express = require("express");
 const router = express.Router();
-const plantiosController = require("../controllers/plantioControllers");
-const colheitaController = require("../controllers/colheitaControllers");
 
+const plantioModel = require("../models/plantioModel");
+const colheitaModel = require("../models/colheitaModel");
 
-router.get("/", plantiosController.listar);
-/*router.get("/colheitas", colheitaController.listar);*/
-router.get("/plantios/:id", plantiosController.listarPlantio);
-router.post("/plantio/create", plantiosController.gravar);
-router.post('/plantio/update/:id', plantiosController.alterar);
-router.get('/plantio/delete/:id', plantiosController.remover);
+//Rota principal do sistema (carrega tudo)
+router.get("/", async (req, res) => {
+    try {
+        const plantios = await plantioModel.findAll({ where: { situacaoPlantio: true } });
+        const colheitas = await colheitaModel.findAll({
+            include: { model: plantioModel, as: "plantio" }
+        });
 
-router.get('/colheitas', colheitaController.listar);
-router.post('/colheita/add', colheitaController.gravar);
-
+        res.render("index", { plantios, colheitas });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Erro ao carregar dashboard.");
+    }
+});
 
 module.exports = router;

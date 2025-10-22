@@ -11,7 +11,7 @@ const gravar = async (req, res) => {
             duracaoPlantio: duracao
         });
 
-        res.redirect("/colheitas");
+        res.redirect("/");
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: "Erro ao gravar plantio." });
@@ -30,7 +30,7 @@ const alterar = async (req, res) => {
             duracaoPlantio: duracao}, {where: {idPlantio: id} }
         );
 
-        res.redirect("/colheitas");
+        res.redirect("/");
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: "Erro ao gravar plantio." });
@@ -46,7 +46,8 @@ const listar = async (req, res) => {
             plantioSelecionado = await plantioModel.findByPk(req.query.id);
         }
 
-        res.render("index", { plantios, plantio: plantioSelecionado || {}
+        res.render("index", { 
+            plantios, plantio: plantioSelecionado || {}
         });
     } catch (err) {
         console.error(err);
@@ -69,7 +70,7 @@ const listarPlantio = async (req, res) => {
 const remover = async(req, res) => {
     const { id } = req.params;
     await plantioModel.destroy({ where: { idPlantio: id } });
-    res.redirect("/colheitas");
+    res.redirect("/");
 };
 
 module.exports = {

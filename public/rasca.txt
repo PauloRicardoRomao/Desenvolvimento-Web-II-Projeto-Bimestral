@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css"  href="/styles/style.css">
+</head>
+<body>
+    <header>
+        <h1>SAgr</h1>
+        <nav>
+            <ul>
+                <li onclick="abrirContainerPlantios()">Plantios</li>
+                <li onclick="abrirContainerColheita()">Colheitas Realizadas</li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="containerPlantios" style="display: none;">
+            <div class="containerCabecalhoPlantio"> 
+                <h2>Plantios em Desenvolvimento</h2>
+                <button type="button" class="btnAddPlantio" onclick="abrirModalCad('modalAddPlantio') ">&#10133; Plantio</button>
+            </div>
+            <ul>
+                <% plantios.forEach(plantio => { %>
+                    <li onclick="abrirModal('modalPlantio<%= plantio.idPlantio %>')">
+                            <h3>Plantio: <%= plantio.descricaoPlantio%></h3>
+                            <h4>Início: <%= plantio.dataInicioPlantio%></h4>
+                            <h4>Duração: <%= plantio.duracaoPlantio%> semanas</h4>
+                    </li>
+                <%})%>
+            </ul>
+        </section>
+
+        <section id="containerColheitas" style="display: none;">
+            <div class="containerCabecalhoPlantio" id="containerCabecalhoColheita"> 
+                <h2>Colheitas Realizadas</h2>
+            </div>
+            <ul>
+                <% if (colheitas && colheitas.length > 0) { %>
+                    <% colheitas.forEach(colheita => { %>
+                        <li>
+                            <h3>Plantio: <%= colheita.plantio.descricaoPlantio %></h3>
+                            <h4>Data da Colheita: <%= colheita.dataColheita %></h4>
+                        </li>
+                    <% }) %>
+                <% } else { %>
+                    <li>Nenhuma colheita registrada</li>
+                <% } %>
+
+            </ul>
+        </section>
+    </main>
+
+
+    <modal id="modalAddPlantio" style="display: none;">
+        <span class="btnFecharModal" onclick="abrirModal('modalAddPlantio')">&times;</span>
+        <section class="containerPlantio">
+            <h2>Adicionar Plantio</h2>
+            <ul>
+                <li>
+                    <form id="formAddPlantio" method="POST" action="/plantio/create" class="formPlantio">
+                        <input type="text" name="descricao" placeholder="Descricao" required>
+                        <input type="number" name="quantidade" placeholder="Quantidade" required>
+                        <select name="unidade" placeholder="Unidade" required>
+                            <option value="" disabled selected>Unidade</option>
+                            <option value="m²">m²</option>
+                            <option value="ha">ha</option>
+                            <option value="Alqueire">Alqueire</option>
+                            <option value="Acre">Acre</option>
+                        </select>
+                        <input type="date" name="dataInicio" placeholder="Data de Início" required>
+                        <input type="number" name="duracao" placeholder="Duração(semanas)">
+                    </form>
+                </li>
+            </ul>
+
+            <div class="menuContainerPlantio">
+                <button type="submit" form="formAddPlantio">Salvar</button>
+            </div>
+        </section>
+    </modal>
+
+    <% plantios.forEach(plantio => { %>
+    <modal id="modalPlantio<%= plantio.idPlantio %>" style="display: none;">
+        <span class="btnFecharModal" onclick="abrirModal('modalPlantio<%= plantio.idPlantio %>')">&times;</span>
+        <section class="containerPlantio">
+            <h2>Detalhes do Plantio</h2>
+            <ul>
+                <li id="dadosPlantio<%= plantio.idPlantio %>">
+                    <h3>Plantio: <%= plantio.descricaoPlantio %></h3>
+                    <h4>Quantidade: <%= plantio.quantidadePlantio %></h4>
+                    <h4>Unidade: <%= plantio.unidadePlantio %></h4>
+                    <h4>Início: <%= plantio.dataInicioPlantio %></h4>
+                    <h4>Duração: <%= plantio.duracaoPlantio %></h4>
+                </li>
+                <li>
+                    <form id="formAlteracaoPlantio<%= plantio.idPlantio %>" method="POST" 
+                    action="/plantio/update/<%= plantio.idPlantio %>"
+                    class="formPlantio">
+                        <input type="text" name="descricao" placeholder="Descricao" required>
+                        <input type="number" name="quantidade" placeholder="Quantidade" required>
+                        <select name="unidade" placeholder="Unidade" required>
+                            <option value="" disabled>Unidade</option>
+                            <option value="m²">m²</option>
+                            <option value="ha">ha</option>
+                            <option value="Alqueire">Alqueire</option>
+                            <option value="Acre">Acre</option>
+                        </select>
+                        <input type="date" name="dataInicio" placeholder="Data de Início" required>
+                        <input type="number" name="duracao" placeholder="Duração(semanas)">
+                    </form>
+                </li>
+            </ul>
+
+            <div class="menuContainerPlantio">
+                <button type="submit" form="formAlteracaoPlantio<%= plantio.idPlantio %>"">Salvar</button>
+                <form action="/plantio/delete/<%= plantio.idPlantio %>" method="GET" >
+                    <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este plantio?')">
+                        Excluir
+                    </button>
+                </form>
+                <button type="button" onclick="gravarColheita('<%= plantio.idPlantio %>')">
+                    Gravar Colheita
+                </button>
+            </div>
+        </section>
+    </modal>
+    <% }) %>
+
+    <footer>
+        <p>&copy; 2025 Paulo Romão. Todos os direitos reservados.</p>
+    </footer>
+    <script src="/scripts/script.js"></script>
+</body>
+</html>

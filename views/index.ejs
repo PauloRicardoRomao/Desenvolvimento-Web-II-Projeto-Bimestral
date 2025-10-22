@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-Br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +13,8 @@
             <ul>
                 <li onclick="abrirContainerPlantios()">Plantios</li>
                 <li onclick="abrirContainerColheita()">Colheitas Realizadas</li>
+                <li onclick="abrirContainerInsumos()">Gerenciamento de Insumos</li>
+                <li onclick="abrirContainerEstoques()">Gerenciamento de Estoques</li>
             </ul>
         </nav>
     </header>
@@ -49,13 +51,34 @@
                 <% } else { %>
                     <li>Nenhuma colheita registrada</li>
                 <% } %>
+            </ul>
+        </section>
 
+        <section id="containerInsumos" style="display: none;">
+            <div class="containerCabecalhoPlantio id="containerCabecalhoInsumo"> 
+                <h2>Gerenciamento de Insumos</h2>
+            </div>
+            <ul>
+                <li onclick="abrirContainerInsumosBiologicos()">Insumos Biológicos</li>
+                <li onclick="abrirContainerInsumosQuimicos()">Insumos Químicos</li>
+                <li onclick="abrirContainerInsumosMecanicos()">Insumos Mecânicos</li>
+            </ul>
+            <ul>
+                <% if (colheitas && colheitas.length > 0) { %>
+                    <% colheitas.forEach(colheita => { %>
+                        <li>
+                            <h3>Plantio: <%= colheita.plantio.descricaoPlantio %></h3>
+                            <h4>Data da Colheita: <%= colheita.dataColheita %></h4>
+                        </li>
+                    <% }) %>
+                <% } else { %>
+                    <li>Nenhuma colheita registrada</li>
+                <% } %>
             </ul>
         </section>
     </main>
 
-
-    <modal id="modalAddPlantio" style="display: none;">
+    <div class="modal" id="modalAddPlantio" style="display: none;">
         <span class="btnFecharModal" onclick="abrirModal('modalAddPlantio')">&times;</span>
         <section class="containerPlantio">
             <h2>Adicionar Plantio</h2>
@@ -81,10 +104,10 @@
                 <button type="submit" form="formAddPlantio">Salvar</button>
             </div>
         </section>
-    </modal>
+    </div>
 
     <% plantios.forEach(plantio => { %>
-    <modal id="modalPlantio<%= plantio.idPlantio %>" style="display: none;">
+    <div class="modal" id="modalPlantio<%= plantio.idPlantio %>" style="display: none;">
         <span class="btnFecharModal" onclick="abrirModal('modalPlantio<%= plantio.idPlantio %>')">&times;</span>
         <section class="containerPlantio">
             <h2>Detalhes do Plantio</h2>
@@ -127,7 +150,7 @@
                 </button>
             </div>
         </section>
-    </modal>
+    </div>
     <% }) %>
 
     <footer>
