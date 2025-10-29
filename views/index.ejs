@@ -58,22 +58,13 @@
             <div class="containerCabecalhoPlantio id="containerCabecalhoInsumo"> 
                 <h2>Gerenciamento de Insumos</h2>
             </div>
-            <ul>
-                <li onclick="abrirContainerInsumosBiologicos()">Insumos Biológicos</li>
-                <li onclick="abrirContainerInsumosQuimicos()">Insumos Químicos</li>
-                <li onclick="abrirContainerInsumosMecanicos()">Insumos Mecânicos</li>
+            <ul class="subMenuInsumos">
+                <li onclick="abrirContainerInsumos('biologicos')">Insumos Biológicos</li>
+                <li onclick="abrirContainerInsumos('quimicos')">Insumos Químicos</li>
+                <li onclick="abrirContainerInsumos('mecanicos')">Insumos Mecânicos</li>
             </ul>
-            <ul>
-                <% if (colheitas && colheitas.length > 0) { %>
-                    <% colheitas.forEach(colheita => { %>
-                        <li>
-                            <h3>Plantio: <%= colheita.plantio.descricaoPlantio %></h3>
-                            <h4>Data da Colheita: <%= colheita.dataColheita %></h4>
-                        </li>
-                    <% }) %>
-                <% } else { %>
-                    <li>Nenhuma colheita registrada</li>
-                <% } %>
+            <h3 style="display: none;" id="tituloInsumo">Tipo Insumo</h3>
+            <ul id="listaInsumosDetalhada">
             </ul>
         </section>
     </main>
@@ -157,5 +148,6 @@
         <p>&copy; 2025 Paulo Romão. Todos os direitos reservados.</p>
     </footer>
     <script src="/scripts/script.js"></script>
+    <script src="/scripts/insumos.js"></script>
 </body>
 </html>

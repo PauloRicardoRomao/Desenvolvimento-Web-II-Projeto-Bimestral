@@ -40,8 +40,8 @@ header{
 header nav{
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-end;
+    justify-content: flex-end;
     width: 50%;
     min-height: 5vh;
 }
@@ -49,11 +49,12 @@ header nav{
 header nav ul{
     display: flex;
     flex-direction: row;
-    width: 50%;
+    width: 80%;
     height: 100%;
     align-items: center;
     justify-content: space-around;
     list-style: none;
+    gap: 2rem;
 }
 
 header nav ul li{
@@ -62,6 +63,7 @@ header nav ul li{
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    text-align: center;
     font-family: var(--font);
     font-size: 1.0em;
     font-weight: 600;
@@ -305,6 +307,34 @@ main section ul li:hover > h3, main section ul li:hover > h4 {
     transform: scale(1.1);
     font-weight: bold;
 }
+
+main section .subMenuInsumos{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    gap: 2rem;
+
+    background-image: linear-gradient(45deg, #1a3500, olive);
+}
+
+main section .subMenuInsumos li{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    max-width: 20%;
+    border: none;
+    font-family: var(--font);
+    font-size: 1.1em;
+    font-weight: 400;
+    color: #999999;
+}
+
 
 .modal{
     flex-direction: column;

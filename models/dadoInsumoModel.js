@@ -21,6 +21,10 @@ const DadoInsumo = sequelize.define("dadoInsumo", {
         type: DataTypes.STRING(100),
         allowNull: true
     },
+    dataValidadeInsumo: {
+        type: DataTypes.DATE,
+        allowNull: true
+    },
     quantidadeRecomendadaDadoInsumo: {
         type: DataTypes.DECIMAL(10,3),
         allowNull: true

@@ -1,11 +1,19 @@
 function abrirContainerPlantios() {
     document.getElementById("containerPlantios").style.display = "block";
     document.getElementById("containerColheitas").style.display = "none";
+    document.getElementById("containerInsumos").style.display = "none";
 }
 
 function abrirContainerColheitas() {
     document.getElementById("containerPlantios").style.display = "none";
     document.getElementById("containerColheitas").style.display = "block";
+    document.getElementById("containerInsumos").style.display = "none";
+}
+
+function abrirContainerInsumos(){
+    document.getElementById("containerPlantios").style.display = "none";
+    document.getElementById("containerColheitas").style.display = "none";
+    document.getElementById("containerInsumos").style.display = "block";
 }
 
 function abrirModal(id) {

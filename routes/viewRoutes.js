@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
             include: { model: plantioModel, as: "plantio" }
         });
 
-        res.render("index", { plantios, colheitas });
+        res.render("index", { plantios, colheitas});
     } catch (error) {
         console.error(error);
         res.status(500).send("Erro ao carregar dashboard.");

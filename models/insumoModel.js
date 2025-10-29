@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/config");
-const tipoInsumo = require("./tipoInsumoModel");
+const tipo = require("./tipoInsumoModel");
 
 const Insumo = sequelize.define("insumo", {
     idInsumo: {
@@ -31,12 +31,12 @@ const Insumo = sequelize.define("insumo", {
     timestamps: false
 });
 
-Insumo.belongsTo(tipoInsumo, {
+Insumo.belongsTo(tipo, {
     foreignKey: "tipoInsumo",
-    as: "tipoInsumo"
+    as: "tipo"
 });
 
-tipoInsumo.hasMany(Insumo, {
+tipo.hasMany(Insumo, {
     foreignKey: "tipoInsumo",
     as: "insumo"
 });
